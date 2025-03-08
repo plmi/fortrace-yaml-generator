@@ -1,0 +1,416 @@
+"app":
+  "default_model": |-
+    gpt-4o-mini
+  "default_temperature": !!float |-
+    1.0
+  "models":
+  - |-
+    gpt-4o-mini
+  - |-
+    o1-preview
+  - |-
+    o1-mini
+  - |-
+    DeepSeek-R1
+  - |-
+    o3-mini
+  "title": |-
+    🔍💬 ForTrace YAML Generator
+"prompt_models":
+  "persona_model": |-
+    gpt-4o-mini
+  "plot_model": |-
+    gpt-4o-mini
+  "relations_model": |-
+    gpt-4o-mini
+  "activities_model": |-
+    o3-mini
+  "yaml_model": |-
+    o3-mini
+"prompts":
+  "persona_prompt": |-
+    You are an AI assistant tasked with generating persona profiles for a fictional digital forensic investigation scenario. These profiles will be used in training exercises or simulations for cybersecurity professionals. Your goal is to create realistic and diverse profiles that can be analyzed during the training.
+
+    Here is the number of innocent profiles you need to generate:
+    <count>
+    {count}
+    </count>
+
+    You will generate three types of profiles:
+    1. One suspect
+    2. One external (who acts as a communication and interaction partner for the suspect)
+    3. The number of innocent individuals specified in the <count> tags above
+
+    Each profile should be unique and contain the following attributes:
+    - full_name: A plausible first and last name
+    - age: A numeric age appropriate for the role
+    - user_account_name: A username derived from the full name (e.g., using initials or parts of the name). Note: Do not generate this for the external.
+    - email_address: A valid email address that logically corresponds to the name and/or username
+    - interests: A comma-separated list of interests
+    - role_in_case: Either "suspect", "external", or "innocent"
+
+    Guidelines for interests:
+    - For innocent profiles: Include only common, harmless interests (e.g., reading, sports, cooking, travel)
+    - For the suspect and external: Include at least one interest that could be considered suspicious (e.g., hacking, dark web, encryption) along with some innocent interests
+
+    Before generating each profile, plan it out inside <profile_creation> tags. In your planning:
+    a) List out key characteristics for the role (suspect, external, innocent)
+    b) Brainstorm specific interests for the role
+    c) Consider an appropriate age range for the role
+    d) For the suspect and external, consider potential connections or shared interests
+    e) For innocent profiles, brainstorm diverse backgrounds and occupations
+
+    After planning, generate the profile in JSON format.
+
+    Once you have generated all the required profiles, combine them into a single JSON array.
+
+    Remember:
+    1. Ensure that the suspect, external, and innocent profiles are clearly distinguishable by their attributes and interests.
+    2. Do not generate a user_account_name for the external profile.
+    3. Make each profile unique and realistic.
+    4. Adhere to the specified format and guidelines for each profile type.
+
+    Begin by planning and generating the suspect profile, then the external profile, and finally the innocent profiles.
+    Present your final personas within <personas> tags.
+  "plot_prompt": |-
+    You are an expert in digital forensics and scenario creation. Your task is to generate a realistic digital forensic scenario for educational purposes. This scenario will be recreated on a virtual machine for students to analyze.
+
+    First, review the list of persons involved in the scenario:
+
+    <personas>
+    {personas}
+    </personas>
+
+    <available_activities>
+    fortrace.mail:
+      - open: Opens Thunderbird with the provided password.
+      - add_imap_account: Adds an IMAP account to Thunderbird with the specified details.
+      - send_mail: Sends an email using Thunderbird with the specified details.
+      - close: Closes Thunderbird.
+
+    fortrace.powermanagement:
+      - shutdown: Shuts down the guest system.
+      - reboot: Reboots the guest system. Requires the 'boot_time' parameter.
+
+    fortrace.filemanagement:
+      - recycle_file: Moves the specified file to the recycle bin.
+      - empty_recycle_bin: Empties the recycle bin for all drives.
+      - secure_delete: Permanently deletes the specified file using a secure deletion method.
+      - write_text_to_file: Writes the provided content to the specified file.
+      - open_file: Opens the specified file using the default application.
+
+    fortrace.powershell:
+      - execute_command: Executes the provided PowerShell command on the guest system.
+
+    fortrace.veracrypt:
+      - create_container: Creates a new VeraCrypt container.
+      - mount_container: Mounts an existing VeraCrypt container.
+      - unmount_container: Unmounts a mounted VeraCrypt container.
+
+    fortrace.filetransfer:
+      - smb_copy: Copies files from the SMB share to the guest.
+      - win_copy: Copies files within the Windows guest system.
+      - open_smb: Opens an SMB connection for file sharing.
+      - close_smb: Closes an open SMB connection.
+      - copy: Copies files directly within the guest system.
+      - host_copy: Copies files from the host to the guest system.
+
+    fortrace.usermanagement:
+      - create: Create a new user.
+      - delete: Delete an existing user.
+      - switch_to: Switch to the specified user.
+
+    fortrace.browser:
+      - open: Opens the browser.
+      - browse_to: Navigates the browser to a specified URL.
+      - close: Closes the browser.
+
+    fortrace.antiforensics:
+      - recycle_bin: Enable or disable the recycle bin functionality.
+      - prefetch: Enable, disable or clear the creation of Prefetch data.
+      - thumbcache: Enable, disable or delete Thumbcache files.
+      - recent_files: Enable or disable tracking of recently opened files.
+      - event_log: Enable, disable or clear event log entries or files.
+      - user_assist: Enable, disable or clear User Assist entries in the Registry.
+      - hibernation: Enable or disable the creation of hibernation files.
+      - pagefile: Enable or disable the creation and usage of the page file.
+      - jump_lists: Enable, disable or delete jump list files.
+      - recent_docs: Enable, disable or delete recently accessed document entries in the Registry.
+    <available_activities>
+
+    Now, follow these steps to create a compelling digital forensic scenario:
+
+    1. Choose one person from the list to be the suspect.
+    2. Designate the remaining persons as innocent users.
+    3. If there's a person with the role "external", consider how they might interact with the suspect without being a user on the seized computer.
+    4. Think of a simple digital forensic scenario involving the suspect.
+    5. Ensure the scenario can be represented by the activities referenced by <available_activities>.
+    6. Include a crucial mistake made by the suspect that leads to their detection.
+    7. Write a concise summary of the plot.
+    8. Create a title that reflects the main theme of the story.
+    9. List relevant tags that highlight key aspects of the scenario.
+
+    Before writing your final output, wrap your thought process inside <scenario_planning> tags. Consider the following aspects:
+    - List each persona and their role
+    - Choose the suspect and justify your choice
+    - Brainstorm at least three potential scenarios and choose the most suitable one
+    - List specific system activities that would represent the chosen scenario and are part of <available_activities>
+    - Brainstorm at least three potential mistakes the suspect could make and choose the most appropriate one
+    - The suspect's motivation and actions
+    - How innocent users create "noise" and background activity
+    - If applicable, how the external interacts with the suspect externally
+
+    After your planning, format your output as follows:
+
+    Title: [the title of the story, 5-10 words]
+    Suspect: [the full name of the suspect]
+    External: [the full name of the external communcation partner]
+    Innocent users: [a comma-separated list of full names of the innocent users]
+    Plot: [a short summary of the digital forensic scenario]
+    Tags: [a list of comma-separated keywords that highlight the key aspects of the story]
+
+    Remember these key requirements:
+    - The scenario must involve only one suspect.
+    - Innocent users should only create "noise" and background activity on the system.
+    - The plot should be simple and easily retold by a list of system activities.
+    - The story should end with the mistake the suspect made that will get them caught.
+    - If there's a external, they should not be a user on the seized computer.
+
+    Here's an example of the desired output format (using generic content):
+
+    <plot>
+    Title: Corporate Espionage: Data Theft via Email
+    Suspect: John Doe
+    External: Bob Miller
+    Innocent users: Jane Smith, Alex Johnson, Sarah Brown
+    Plot: [A brief, engaging summary of the digital forensic scenario]
+    Tags: data theft, corporate espionage, email exfiltration, encryption, file deletion
+    </plot>
+
+    Now, create your digital forensic scenario based on the given personas and instructions.
+    Present your final plot in <plot> tags.
+  "relations_prompt": |-
+    You are an AI assistant specializing in digital forensics. Your task is to create a network of relationships between personas in a fictive digital forensic scenario. Your goal is to establish connections that are coherent with the given plot and the personas' interests.
+
+    First, carefully read the plot of the fictive digital forensic scenario:
+
+    <plot>
+    {plot}
+    </plot>
+
+    Now, review the list of personas:
+
+    <personas>
+    {personas}
+    </personas>
+
+    Instructions:
+
+    1. Analyze the information provided:
+      - Identify the suspect mentioned in the plot.
+      - Note the activities and interests of each persona.
+      - Look for potential connections between personas based on the plot details.
+
+    2. Create relations between personas:
+      - Establish connections that are logical and consistent with the plot.
+      - Remember that only one person is the suspect.
+      - Innocent personas can have relations with the suspect but must not be involved in criminal activities.
+      - Consider both personal and professional relationships as well as their interests.
+      - Create at least one relation for each persona.
+      - Ensure that the suspect has multiple relations.
+      - For personas with the "external" role, create relationships that involve interaction with the suspect via external communication methods (e.g., email). These personas do not have accounts on the seized computer.
+
+    3. Determine the description of relations:
+      - Base the description on shared interests, activities, or plot events.
+      - Ensure the descriptions are specific and relevant to the scenario.
+      - Do not include any criminal activities in the relations of innocent personas.
+      - Be creative but realistic in establishing connections.
+      - If the plot doesn't provide enough information for a particular relation, you may infer logical connections based on the personas' characteristics.
+
+    Before creating the final output, conduct a thorough analysis of the relationships. Wrap your analysis inside <relationship_analysis> tags. In your analysis:
+    1. List each persona with their key characteristics and potential connections.
+    2. Explicitly identify the suspect and their potential connections.
+    3. For each persona, list all possible connections (personal or professional) with other personas. It's okay for this section to be quite long.
+    4. Evaluate the strength and relevance of each potential connection, explaining your reasoning.
+    5. For "external" personas, specify how they interact with the suspect via external communication methods.
+    6. Summarize the most important relationships that will form the core of your network.
+
+    After your analysis, create a mermaid graph TD diagram representing the relationships between personas. Use the following format:
+
+    ```mermaid
+    graph TD
+        Person_A---|Description of Relation|Person_B
+        Person_C---|Description of Relation|Person_D
+    ```
+
+    Ensure that each relationship is represented by a single line in the diagram, with the description of the relation as the label for the line.
+
+    Present your final mermaid diagram within <mermaid_diagram> tags.
+  "activities_prompt": |-
+    You are a digital forensics expert specializing in Windows systems.
+    Using your deep technical knowledge your task is to create a table of system activities that occurred on a shared Windows computer before it was seized by the police.
+    The system activities are used in a training scenario for students to practice proper artifact collection and analysis.
+
+    Before we begin, here are the key elements for your scenario:
+
+    <plot>
+    {plot}
+    </plot>
+
+    <personas>
+    {personas}
+    </personas>
+
+    <relations>
+    {relations}
+    </relations>
+
+    Next, carefully read the available system activities.
+    <available_activities>
+    | module name                  | function               | description                                                                                     |
+    |------------------------------|------------------------|-------------------------------------------------------------------------------------------------|
+    | fortrace.mail                | open                   | Opens Thunderbird with the provided password.                                                 |
+    | fortrace.mail                | add_imap_account       | Adds an IMAP account to Thunderbird with the specified details.                                |
+    | fortrace.mail                | send_mail              | Sends an email using Thunderbird with the specified details.                                   |
+    | fortrace.mail                | close                  | Closes Thunderbird.                                                                            |
+    | fortrace.powermanagement     | shutdown                | Shuts down the guest system.                                                                    |
+    | fortrace.powermanagement     | reboot                 | Reboots the guest system. Requires the 'boot_time' parameter.                                  |
+    | fortrace.filemanagement       | recycle_file           | Moves the specified file to the recycle bin.                                                  |
+    | fortrace.filemanagement       | empty_recycle_bin      | Empties the recycle bin for all drives.                                                       |
+    | fortrace.filemanagement       | secure_delete          | Permanently deletes the specified file using a secure deletion method.                         |
+    | fortrace.filemanagement       | write_text_to_file     | Writes the provided content to the specified file.                                            |
+    | fortrace.filemanagement       | open_file              | Opens the specified file using the default application.                                        |
+    | fortrace.powershell          | execute_command        | Executes the provided PowerShell command on the guest system.                                  |
+    | fortrace.veracrypt           | create_container       | Creates a new VeraCrypt container.                                                             |
+    | fortrace.veracrypt           | mount_container        | Mounts an existing VeraCrypt container.                                                        |
+    | fortrace.veracrypt           | unmount_container      | Unmounts a mounted VeraCrypt container.                                                        |
+    | fortrace.filetransfer         | smb_copy               | Copies files from the SMB share to the guest.                                                 |
+    | fortrace.filetransfer         | win_copy               | Copies files within the Windows guest system.                                                 |
+    | fortrace.filetransfer         | open_smb              | Opens an SMB connection for file sharing.                                                      |
+    | fortrace.filetransfer         | close_smb              | Closes an open SMB connection.                                                                  |
+    | fortrace.filetransfer         | copy                   | Copies files directly within the guest system.                                                |
+    | fortrace.filetransfer         | host_copy              | Copies files from the host to the guest system.                                               |
+    | fortrace.usermanagement       | create                 | Create a new user.                                                                             |
+    | fortrace.usermanagement       | delete                 | Delete an existing user.                                                                        |
+    | fortrace.usermanagement       | switch_to              | Switch to the specified user.                                                                   |
+    | fortrace.browser              | open                   | Opens the browser.                                                                              |
+    | fortrace.browser              | browse_to              | Navigates the browser to a specified URL.                                                      |
+    | fortrace.browser              | close                  | Closes the browser.                                                                            |
+    | fortrace.antiforensics       | recycle_bin            | Enable or disable the recycle bin functionality.                                              |
+    | fortrace.antiforensics       | prefetch               | Enable, disable or clear the creation of Prefetch data.                                       |
+    | fortrace.antiforensics       | thumbcache             | Enable, disable or delete Thumbcache files.                                                   |
+    | fortrace.antiforensics       | recent_files           | Enable or disable tracking of recently opened files.                                           |
+    | fortrace.antiforensics       | event_log              | Enable, disable or clear event log entries or files.                                          |
+    | fortrace.antiforensics       | user_assist            | Enable, disable or clear User Assist entries in the Registry.                                  |
+    | fortrace.antiforensics       | hibernation            | Enable or disable the creation of hibernation files.                                          |
+    | fortrace.antiforensics       | pagefile               | Enable or disable the creation and usage of the page file.                                     |
+    | fortrace.antiforensics       | jump_lists             | Enable, disable or delete jump list files.                                                    |
+    | fortrace.antiforensics       | recent_docs            | Enable, disable or delete recently accessed document entries in the Registry.         
+    </available_activities>
+
+    Instructions:
+
+    1. Analyze the provided plot, personas, and relations to understand the scenario.
+    2. Analyze and understand the available system activities.
+    3. Use the available activities to plan a sequence of system events that follow the narrative of the forensic scenario
+    3.1 Including both suspicious and innocent actions.
+    3.2 Create least 10 background activities for the innocent personas that follow the narrative of the forensic scenario.
+    3.3 Ensure to maintain a consistent user behavior with no contradictions by following these rules for the activities:
+      a. Every file must be created before use, with a valid file path.
+      b. A user must create its own user account before he can perform actions. There is no System Admin on the computer.
+      c. Always switch to the correct user before performing actions.
+      d. A web browser must be opened before browsing to a website.
+      e. An IMAP account must be added before opening the mail client or sending emails.
+    4. Create a formatted table of system activities with the following columns:
+      | Timestamp | User | Module name | Function | Description of activity | Relevance for scenario |
+    5. Follow these rules when populating the table:
+      a. Timestamp: Ensure timestamps are in chronological order and use a consistent format (YYYY-MM-DD HH:MM:SS)
+      b. User: Use full names in the "User" column
+      c. Module name: Classify the module's name of the function of the activity coherent with <available_activities>
+      d. Function: Classify the name of the function of the activity
+      e. Description: Provide detailed descriptions of activities, including email recipients, full file paths, and other relevant information
+      f. Relevance: Exactly outline if and why each activity matters for the investigation, helping students and investigators focus on key evidence.
+
+    Remember these key requirements:
+    - The scenario must involve only one suspect.
+    - Innocent users should only create "noise" and background activity on the system.
+    - The plot should be simple and easily retold by a list of system activities.
+    - Remember to follow the rules for realistic user behavior before creating the system activities
+    - The story should end with the mistake the suspect made that will get them caught.
+    - If there's a external, they should not be a user on the seized computer.
+    - Focus on accuracy and respect the requirements in <available_activities>
+
+    Output a markdown formatted table of system activities like this
+    ```markdown
+    ...
+    ```
+  "yaml_prompt": |-
+    You are a digital forensic expert tasked with translating a table of system activities into a synthetic YAML configuration. This configuration should be coherent with the involved personas, their relations, and the plot that summarizes the narrative of the forensic story. Follow these instructions carefully to complete the task:
+
+    1. First, review the plot summary of the digital forensic story:
+    <plot>
+    {plot}
+    </plot>
+
+    2. Next, familiarize yourself with the personas involved in the scenario:
+    <personas>
+    {personas}
+    </personas>
+
+    3. Understand the relations between the personas:
+    <relations>
+    {relations}
+    </relations>
+
+    4. You will be working with a table of activities that has the following structure:
+    - Timestamp: Time when the activity happened on the system
+    - User: User who executed the action
+    - Module name: Name of the ForTrace module
+    - Function: Name of the module's function
+    - Description of activity: Detailed description of the activity
+
+    Here is the activities table:
+    <activities_table>
+    {activities}
+    </activities_table>
+
+    5. To generate the YAML sections, you will use the provided module schema. This schema contains JSON specifications for all available module functions that can be used to construct the activities. Here is the module schema:
+    <module_schema>
+    {context}
+    </module_schema>
+
+    6. When generating the YAML sections:
+      a. Strictly follow the parameter specifications of each function as defined in the module schema.
+      b. Ensure that the generated activities are coherent with the digital forensic narrative.
+      c. If important information is missing in the activity's description for a required attribute, come up with realistic values that align with the overall narrative of the plot and the personas.
+
+    7. Use the following YAML template to generate your output:
+    <yaml>
+    name: [title of the plot]
+    description: [description of the plot]
+    debug_level: DEBUG
+    scenario_options:
+      export_dir: /data/export/
+      guest_name: [guest name]
+      guest_platform: windows10
+      scenario_start: [scenario start]
+    scenario:
+      - fortrace...
+        action: ...
+      [Include all translated YAML sections here]
+    </yaml>
+
+    8. Your final output should be a complete YAML configuration that includes all translated sections from the activities table. Ensure that the configuration is coherent with the plot, personas, and their relations. Pay close attention to the chronological order of events and the logical flow of activities.
+
+    Present your final YAML configuration within <final_yaml> tags.
+"temperatures":
+  "persona_temperature": !!float |-
+    1.0
+  "plot_temperature": !!float |-
+    1.0
+  "relations_temperature": !!float |-
+    1.0
+  "activities_temperature": !!float |-
+    1.0
+  "yaml_temperature": !!float |-
+    1.0
