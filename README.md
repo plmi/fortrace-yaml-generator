@@ -2,6 +2,12 @@
 
 This chatbot converts a forensic scenario into a YAML file for ForTrace.
 
+![Personas](./images/screenshot1.png)
+
+![Relations](./images/screenshot2.png)
+
+![YAML](./images/screenshot3.png)
+
 ## How to use
 
 You can run the app either locally or with `docker`. Ensure to install all dependencies when running locally.
