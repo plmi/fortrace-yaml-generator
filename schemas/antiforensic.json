@@ -1,0 +1,298 @@
+{
+  "module": "fortrace.antiforensics",
+  "functions": [
+    {
+      "action": "recycle_bin",
+      "description": "Enable or disable the recycle bin functionality.",
+      "examples": [
+        {
+          "yaml": "fortrace.antiforensics:\n    action: recycle_bin\n    status: disabled",
+          "description": "Disables the recycle bin."
+        },
+        {
+          "yaml": "fortrace.antiforensics:\n    action: recycle_bin\n    status: enabled",
+          "description": "Enables the recycle bin."
+        }
+      ],
+      "properties": {
+        "action": {
+          "description": "The specific action to perform on the recycle bin.",
+          "required": true,
+          "type": "string"
+        },
+        "status": {
+          "description": "The action to be performed on the recycle bin, either enabled or disabled.",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },
+    {
+      "action": "prefetch",
+      "description": "Enable, disable or clear the creation of Prefetch data.",
+      "examples": [
+        {
+          "yaml": "fortrace.antiforensics:\n    action: prefetch\n    status: cleared",
+          "description": "Clears the Prefetch data."
+        },
+        {
+          "yaml": "fortrace.antiforensics:\n    action: prefetch\n    status: disabled",
+          "description": "Disables the creation of Prefetch data."
+        },
+        {
+          "yaml": "fortrace.antiforensics:\n    action: prefetch\n    status: enabled",
+          "description": "Enables the creation of Prefetch data."
+        }
+      ],
+      "properties": {
+        "action": {
+          "description": "The specific action to perform on the Prefetch data.",
+          "required": true,
+          "type": "string"
+        },
+        "status": {
+          "description": "The action to be performed on the Prefetch data, either enabled, disabled, or cleared.",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },
+    {
+      "action": "thumbcache",
+      "description": "Enable, disable or delete Thumbcache files.",
+      "examples": [
+        {
+          "yaml": "fortrace.antiforensics:\n    action: thumbcache\n    status: deleted",
+          "description": "Deletes Thumbcache files."
+        },
+        {
+          "yaml": "fortrace.antiforensics:\n    action: thumbcache\n    status: disabled",
+          "description": "Disables Thumbcache functionality."
+        },
+        {
+          "yaml": "fortrace.antiforensics:\n    action: thumbcache\n    status: enabled",
+          "description": "Enables Thumbcache functionality."
+        }
+      ],
+      "properties": {
+        "action": {
+          "description": "The specific action to perform on Thumbcache files.",
+          "required": true,
+          "type": "string"
+        },
+        "status": {
+          "description": "The action to be performed on Thumbcache files, either enabled, disabled, or deleted.",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },
+    {
+      "action": "recent_files",
+      "description": "Enable or disable tracking of recently opened files.",
+      "examples": [
+        {
+          "yaml": "fortrace.antiforensics:\n    action: recent_files\n    status: disabled",
+          "description": "Disables tracking of recently opened files."
+        },
+        {
+          "yaml": "fortrace.antiforensics:\n    action: recent_files\n    status: enabled",
+          "description": "Enables tracking of recently opened files."
+        }
+      ],
+      "properties": {
+        "action": {
+          "description": "The specific action to perform on recent files tracking.",
+          "required": true,
+          "type": "string"
+        },
+        "status": {
+          "description": "The action to be performed on recent files tracking, either enabled or disabled.",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },
+    {
+      "action": "event_log",
+      "description": "Enable, disable or clear event log entries or files.",
+      "examples": [
+        {
+          "yaml": "fortrace.antiforensics:\n    action: event_log\n    status: cleared",
+          "description": "Clears event log entries."
+        },
+        {
+          "yaml": "fortrace.antiforensics:\n    action: event_log\n    status: deleted",
+          "description": "Deletes event log files."
+        },
+        {
+          "yaml": "fortrace.antiforensics:\n    action: event_log\n    status: disabled",
+          "description": "Disables event logging."
+        },
+        {
+          "yaml": "fortrace.antiforensics:\n    action: event_log\n    status: enabled",
+          "description": "Enables event logging."
+        }
+      ],
+      "properties": {
+        "action": {
+          "description": "The specific action to perform on event logs.",
+          "required": true,
+          "type": "string"
+        },
+        "status": {
+          "description": "The action to be performed on event logs, either enabled, disabled, cleared, or deleted.",
+          "required": true,
+          "type": "string"
+        },
+        "logfile": {
+          "description": "Specifies the log file(s) to clear when the action is 'event_log'.",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },
+    {
+      "action": "user_assist",
+      "description": "Enable, disable or clear User Assist entries in the Registry.",
+      "examples": [
+        {
+          "yaml": "fortrace.antiforensics:\n    action: user_assist\n    status: deleted",
+          "description": "Deletes User Assist entries."
+        },
+        {
+          "yaml": "fortrace.antiforensics:\n    action: user_assist\n    status: disabled",
+          "description": "Disables User Assist tracking."
+        },
+        {
+          "yaml": "fortrace.antiforensics:\n    action: user_assist\n    status: enabled",
+          "description": "Enables User Assist tracking."
+        }
+      ],
+      "properties": {
+        "action": {
+          "description": "The specific action to perform on User Assist entries.",
+          "required": true,
+          "type": "string"
+        },
+        "status": {
+          "description": "The action to be performed on User Assist entries, either enabled, disabled, or deleted.",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },
+    {
+      "action": "hibernation",
+      "description": "Enable or disable the creation of hibernation files.",
+      "examples": [
+        {
+          "yaml": "fortrace.antiforensics:\n    action: hibernation\n    status: disabled",
+          "description": "Disables the creation of hibernation files."
+        },
+        {
+          "yaml": "fortrace.antiforensics:\n    action: hibernation\n    status: enabled",
+          "description": "Enables the creation of hibernation files."
+        }
+      ],
+      "properties": {
+        "action": {
+          "description": "The specific action to perform on hibernation files.",
+          "required": true,
+          "type": "string"
+        },
+        "status": {
+          "description": "The action to be performed on hibernation files, either enabled or disabled.",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },
+    {
+      "action": "pagefile",
+      "description": "Enable or disable the creation and usage of the page file.",
+      "examples": [
+        {
+          "yaml": "fortrace.antiforensics:\n    action: pagefile\n    status: disabled",
+          "description": "Disables the creation and usage of the page file."
+        },
+        {
+          "yaml": "fortrace.antiforensics:\n    action: pagefile\n    status: enabled",
+          "description": "Enables the creation and usage of the page file."
+        }
+      ],
+      "properties": {
+        "action": {
+          "description": "The specific action to perform on the page file.",
+          "required": true,
+          "type": "string"
+        },
+        "status": {
+          "description": "The action to be performed on the page file, either enabled or disabled.",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },
+    {
+      "action": "jump_lists",
+      "description": "Enable, disable or delete jump list files.",
+      "examples": [
+        {
+          "yaml": "fortrace.antiforensics:\n    action: jump_lists\n    status: deleted",
+          "description": "Deletes jump list files."
+        },
+        {
+          "yaml": "fortrace.antiforensics:\n    action: jump_lists\n    status: disabled",
+          "description": "Disables jump list functionality."
+        },
+        {
+          "yaml": "fortrace.antiforensics:\n    action: jump_lists\n    status: enabled",
+          "description": "Enables jump list functionality."
+        }
+      ],
+      "properties": {
+        "action": {
+          "description": "The specific action to perform on jump lists.",
+          "required": true,
+          "type": "string"
+        },
+        "status": {
+          "description": "The action to be performed on jump lists, either enabled, disabled, or deleted.",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },
+    {
+      "action": "recent_docs",
+      "description": "Enable, disable or delete recently accessed document entries in the Registry.",
+      "examples": [
+        {
+          "yaml": "fortrace.antiforensics:\n    action: recent_docs\n    status: deleted",
+          "description": "Deletes recently accessed document entries."
+        },
+        {
+          "yaml": "fortrace.antiforensics:\n    action: recent_docs\n    status: disabled",
+          "description": "Disables tracking of recently accessed documents."
+        },
+        {
+          "yaml": "fortrace.antiforensics:\n    action: recent_docs\n    status: enabled",
+          "description": "Enables tracking of recently accessed documents."
+        }
+      ],
+      "properties": {
+        "action": {
+          "description": "The specific action to perform on recent documents.",
+          "required": true,
+          "type": "string"
+        },
+        "status": {
+          "description": "The action to be performed on recent documents, either enabled, disabled, or deleted.",
+          "required": true,
+          "type": "string"
+        }
+      }
+    }
+  ]
+}

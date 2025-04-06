@@ -1,0 +1,167 @@
+{
+  "module": "fortrace.filetransfer",
+  "functions": [
+    {
+      "action": "smb_copy",
+      "description": "Copies files from the SMB share to the guest.",
+      "examples": [
+        {
+          "yaml": "fortrace.filetransfer:\n    action: smb_copy\n    source_path: C:\\Users\\fortrace\\Downloads\\Firefox.exe\n    target_path: E:\\Firefox.exe\n    share: \"\\\\192.168.103.8\\sambashare\"\n    username: service\n    password: asdf1234\n    artifact_type: NEEDLE",
+          "description": "Example of copying a file from an SMB share to the guest."
+        }
+      ],
+      "properties": {
+        "source_path": {
+          "description": "The source path of the file(s) to be transferred.",
+          "required": true,
+          "type": "string"
+        },
+        "target_path": {
+          "description": "The target path where the file(s) will be transferred.",
+          "required": true,
+          "type": "string"
+        },
+        "share": {
+          "description": "The SMB share to be used for the file transfer.",
+          "required": true,
+          "type": "string"
+        },
+        "username": {
+          "description": "The username for authentication.",
+          "required": true,
+          "type": "string"
+        },
+        "password": {
+          "description": "The password for authentication.",
+          "required": true,
+          "type": "string"
+        },
+        "artifact_type": {
+          "description": "Specifies whether the action should be logged as an artifact in the report.",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },
+    {
+      "action": "win_copy",
+      "description": "Copies files within the Windows guest system.",
+      "examples": [
+        {
+          "yaml": "fortrace.filetransfer:\n    action: win_copy\n    source_path: C:\\Users\\fortrace\\Downloads\\VeraCrypt_1.26.15.zip\n    target_path: E:\\VeraCrypt_1.26.15.zip\n    artifact_type: NEEDLE",
+          "description": "Example of copying a file within the Windows guest system."
+        }
+      ],
+      "properties": {
+        "source_path": {
+          "description": "The source path of the file(s) to be transferred.",
+          "required": true,
+          "type": "string"
+        },
+        "target_path": {
+          "description": "The target path where the file(s) will be transferred.",
+          "required": true,
+          "type": "string"
+        },
+        "artifact_type": {
+          "description": "Specifies whether the action should be logged as an artifact in the report.",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },
+    {
+      "action": "open_smb",
+      "description": "Opens an SMB connection for file sharing.",
+      "examples": [
+        {
+          "yaml": "fortrace.filetransfer:\n    action: open_smb\n    source_path: \\\\Users\\fortrace\\Downloads\\VeraCrypt_1.26.15.zip\n    drive: E:\n    username: service\n    password: asdf1234",
+          "description": "Example of opening an SMB connection."
+        }
+      ],
+      "properties": {
+        "drive": {
+          "description": "The drive letter to use for the SMB connection.",
+          "required": true,
+          "type": "string"
+        },
+        "username": {
+          "description": "The username for authentication.",
+          "required": true,
+          "type": "string"
+        },
+        "password": {
+          "description": "The password for authentication.",
+          "required": true,
+          "type": "string"
+        },
+        "source_path": {
+          "description": "The source path of the file(s) to be transferred.",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },
+    {
+      "action": "close_smb",
+      "description": "Closes an open SMB connection.",
+      "examples": [
+        {
+          "yaml": "fortrace.filetransfer:\n    action: close_smb\n    drive: E:",
+          "description": "Example of closing an SMB connection."
+        }
+      ],
+      "properties": {
+        "drive": {
+          "description": "The drive letter to use for the SMB connection.",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },
+    {
+      "action": "copy",
+      "description": "Copies files directly within the guest system.",
+      "examples": [
+        {
+          "yaml": "fortrace.filetransfer:\n    action: copy\n    source_path: C:\\Users\\fortrace\\Downloads\\VeraCrypt_1.26.15.zip\n    target_path: E:\\VeraCrypt_1.26.15.zip",
+          "description": "Example of copying files directly within the guest system."
+        }
+      ],
+      "properties": {
+        "source_path": {
+          "description": "The source path of the file(s) to be transferred.",
+          "required": true,
+          "type": "string"
+        },
+        "target_path": {
+          "description": "The target path where the file(s) will be transferred.",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },
+    {
+      "action": "host_copy",
+      "description": "Copies files from the host to the guest system.",
+      "examples": [
+        {
+          "yaml": "fortrace.filetransfer:\n    action: host_copy\n    source_path: C:\\Users\\fortrace\\Downloads\\VeraCrypt_1.26.15.zip\n    target_path: E:\\VeraCrypt_1.26.15.zip",
+          "description": "Example of copying files from the host to the guest system."
+        }
+      ],
+      "properties": {
+        "source_path": {
+          "description": "The source path of the file(s) to be transferred.",
+          "required": true,
+          "type": "string"
+        },
+        "target_path": {
+          "description": "The target path where the file(s) will be transferred.",
+          "required": true,
+          "type": "string"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "module": "fortrace.powermanagement",
+  "functions": [
+    {
+      "action": "shutdown",
+      "description": "Shuts down the guest system.",
+      "examples": [
+        {
+          "yaml": "fortrace.powermanagement:\n    action: shutdown\n    artifact_type: NEEDLE",
+          "description": "Example of shutting down the system with an artifact type of NEEDLE."
+        }
+      ],
+      "properties": {
+        "action": {
+          "description": "The power management action to perform. Supported values are 'shutdown'.",
+          "required": true,
+          "type": "string"
+        },
+        "artifact_type": {
+          "description": "The type of artifact to add to the report. Supported values are 'NEEDLE' or an empty string.",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },
+    {
+      "action": "reboot",
+      "description": "Reboots the guest system. Requires the 'boot_time' parameter.",
+      "examples": [
+        {
+          "yaml": "fortrace.powermanagement:\n    action: reboot\n    boot_time: \"2024-04-16 07:32:12\"\n    artifact_type: NEEDLE",
+          "description": "Example of rebooting the system with a specified boot time and an artifact type of NEEDLE."
+        }
+      ],
+      "properties": {
+        "action": {
+          "description": "The power management action to perform. Supported values are 'reboot'.",
+          "required": true,
+          "type": "string"
+        },
+        "boot_time": {
+          "description": "The boot time for the system in the format '%Y-%m-%d %H:%M:%S'. Required if 'action' is 'reboot'.",
+          "required": true,
+          "type": "string"
+        },
+        "artifact_type": {
+          "description": "The type of artifact to add to the report. Supported values are 'NEEDLE' or an empty string.",
+          "required": false,
+          "type": "string"
+        }
+      }
+    }
+  ]
+}

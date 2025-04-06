@@ -1,0 +1,98 @@
+{
+  "module": "filemanagement",
+  "functions": [
+    {
+      "action": "recycle_file",
+      "description": "Moves the specified file to the recycle bin.",
+      "examples": [
+        {
+          "yaml": "fortrace.filemanagement:\n    action: recycle_file\n    filepath: C:\\Users\\fortrace\\Downloads\\VeraCrypt_1.26.15.zip\n    artifact_type: NEEDLE",
+          "description": "Recycles a specified file and marks the action as a traceable artifact."
+        }
+      ],
+      "properties": {
+        "filepath": {
+          "description": "The path of the file to be recycled.",
+          "required": true,
+          "type": "string"
+        },
+        "artifact_type": {
+          "description": "The type of artifact to add to the report.",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },
+    {
+      "action": "empty_recycle_bin",
+      "description": "Empties the recycle bin for all drives.",
+      "examples": [
+        {
+          "yaml": "fortrace.filemanagement:\n    action: empty_recycle_bin",
+          "description": "Empties the recycle bin without requiring a file path."
+        }
+      ],
+      "properties": {}
+    },
+    {
+      "action": "secure_delete",
+      "description": "Permanently deletes the specified file using a secure deletion method.",
+      "examples": [
+        {
+          "yaml": "fortrace.filemanagement:\n    action: secure_delete\n    filepath: C:\\Users\\fortrace\\Downloads\\Firefox.exe",
+          "description": "Securely deletes a specified file."
+        }
+      ],
+      "properties": {
+        "filepath": {
+          "description": "The path of the file to be securely deleted.",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },
+    {
+      "action": "write_text_to_file",
+      "description": "Writes the provided content to the specified file.",
+      "examples": [
+        {
+          "yaml": "fortrace.filemanagement:\n    action: write_text_to_file\n    filepath: 'C:\\Users\\Bill\\Documents\\homework.txt'\n    filecontent: 'This is a multiline document.\n    Title: A Glimpse into the World Beyond: Exploring the Modern Zoo\n    \n    Zoos, often considered as gateways to the animal kingdom...'",
+          "description": "Writes multiline content to a specified file."
+        },
+        {
+          "yaml": "fortrace.filemanagement:\n    action: write_text_to_file\n    filepath: 'C:\\Users\\Bill\\Desktop\\top_secret.txt'\n    filecontent: 'Passwort: SuperSafe123!'",
+          "description": "Writes a password to a specified file."
+        }
+      ],
+      "properties": {
+        "filepath": {
+          "description": "The path of the file where content will be written.",
+          "required": true,
+          "type": "string"
+        },
+        "filecontent": {
+          "description": "The content to be written to the file.",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },
+    {
+      "action": "open_file",
+      "description": "Opens the specified file using the default application.",
+      "examples": [
+        {
+          "yaml": "fortrace.filemanagement:\n    action: open_file\n    filepath: C:\\Users\\fortrace\\Desktop\\notes.txt",
+          "description": "Opens a specified file."
+        }
+      ],
+      "properties": {
+        "filepath": {
+          "description": "The path of the file to be opened.",
+          "required": true,
+          "type": "string"
+        }
+      }
+    }
+  ]
+}

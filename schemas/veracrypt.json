@@ -1,0 +1,91 @@
+{
+  "module": "VeraCrypt",
+  "functions": [
+    {
+      "action": "create_container",
+      "description": "Creates a new VeraCrypt container.",
+      "examples": [
+        {
+          "yaml": "- fortrace.veracrypt:\n    action: create_container\n    container_path: C:\\Users\\fortrace\\Desktop\\info.txt\n    size: 50M\n    password: SuperSafe123!\n    artifact_type: NEEDLE",
+          "description": "Example of creating a VeraCrypt container with a specified path, size, password, and artifact type."
+        }
+      ],
+      "properties": {
+        "container_path": {
+          "description": "The file path to the VeraCrypt container.",
+          "required": true,
+          "type": "string"
+        },
+        "size": {
+          "description": "The size of the VeraCrypt container to create.",
+          "required": true,
+          "type": "string"
+        },
+        "password": {
+          "description": "The password for the VeraCrypt container.",
+          "required": true,
+          "type": "string"
+        },
+        "artifact_type": {
+          "description": "The type of artifact to add to the report.",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },
+    {
+      "action": "mount_container",
+      "description": "Mounts an existing VeraCrypt container.",
+      "examples": [
+        {
+          "yaml": "- fortrace.veracrypt:\n    action: mount_container\n    container_path: C:\\Users\\fortrace\\Desktop\\info.txt\n    mount_point: E\n    password: SuperSafe123!\n    artifact_type: NEEDLE",
+          "description": "Example of mounting a VeraCrypt container with a specified path, mount point, password, and artifact type."
+        }
+      ],
+      "properties": {
+        "container_path": {
+          "description": "The file path to the VeraCrypt container.",
+          "required": true,
+          "type": "string"
+        },
+        "mount_point": {
+          "description": "The directory where the VeraCrypt container will be mounted.",
+          "required": true,
+          "type": "string"
+        },
+        "password": {
+          "description": "The password for the VeraCrypt container.",
+          "required": true,
+          "type": "string"
+        },
+        "artifact_type": {
+          "description": "The type of artifact to add to the report.",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },
+    {
+      "action": "unmount_container",
+      "description": "Unmounts a mounted VeraCrypt container.",
+      "examples": [
+        {
+          "yaml": "- fortrace.veracrypt:\n    action: unmount_container\n    mount_point: E\n    artifact_type: NEEDLE",
+          "description": "Example of unmounting a VeraCrypt container from a specified mount point with an artifact type."
+        }
+      ],
+      "properties": {
+        "mount_point": {
+          "description": "The directory where the VeraCrypt container is mounted.",
+          "required": true,
+          "type": "string"
+        },
+        "artifact_type": {
+          "description": "The type of artifact to add to the report.",
+          "required": false,
+          "type": "string"
+        }
+      }
+    }
+  ]
+}

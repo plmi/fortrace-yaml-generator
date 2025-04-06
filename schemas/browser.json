@@ -1,0 +1,76 @@
+{
+  "module": "fortrace.browser",
+  "functions": [
+    {
+      "action": "open",
+      "description": "Opens the browser.",
+      "examples": [
+        {
+          "yaml": "- fortrace.browser:\n    action: open\n    artifact_type: NEEDLE",
+          "description": "Example of opening the browser with a traceable artifact."
+        }
+      ],
+      "properties": {
+        "action": {
+          "description": "The action to perform. Supported value is 'open'.",
+          "required": true,
+          "type": "string"
+        },
+        "artifact_type": {
+          "description": "The type of artifact to add to the report. Supported value is 'NEEDLE'.",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },
+    {
+      "action": "browse_to",
+      "description": "Navigates the browser to a specified URL.",
+      "examples": [
+        {
+          "yaml": "- fortrace.browser:\n    action: browse_to\n    url: https://www.google.com/\n    artifact_type: NEEDLE",
+          "description": "Example of navigating to a URL with a traceable artifact."
+        }
+      ],
+      "properties": {
+        "action": {
+          "description": "The action to perform. Supported value is 'browse_to'.",
+          "required": true,
+          "type": "string"
+        },
+        "url": {
+          "description": "The URL to navigate to. Required for the 'browse_to' action.",
+          "required": true,
+          "type": "string"
+        },
+        "artifact_type": {
+          "description": "The type of artifact to add to the report. Supported value is 'NEEDLE'.",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },
+    {
+      "action": "close",
+      "description": "Closes the browser.",
+      "examples": [
+        {
+          "yaml": "- fortrace.browser:\n    action: close\n    artifact_type: NEEDLE",
+          "description": "Example of closing the browser with a traceable artifact."
+        }
+      ],
+      "properties": {
+        "action": {
+          "description": "The action to perform. Supported value is 'close'.",
+          "required": true,
+          "type": "string"
+        },
+        "artifact_type": {
+          "description": "The type of artifact to add to the report. Supported value is 'NEEDLE'.",
+          "required": false,
+          "type": "string"
+        }
+      }
+    }
+  ]
+}

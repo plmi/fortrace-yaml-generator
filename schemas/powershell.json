@@ -1,0 +1,44 @@
+{
+  "module": "fortrace.powershell",
+  "functions": [
+    {
+      "action": "execute_command",
+      "description": "Executes the provided PowerShell command on the guest system.",
+      "examples": [
+        {
+          "yaml": "fortrace.powershell:\n    action: execute_command\n    command: \"C:\\Tools\\Procmon64.exe /Terminate\"",
+          "description": "Executes the command to terminate the Procmon64 process."
+        },
+        {
+          "yaml": "fortrace.powershell:\n    action: execute_command\n    command: \"C:\\Tools\\Procmon64.exe /OpenLog 'C:\\Tools\\fortrace.pml' /SaveAs 'C:\\Tools\\fortrace.csv'\"",
+          "description": "Executes the command to open a log file and save it as a CSV."
+        },
+        {
+          "yaml": "fortrace.powershell:\n    action: execute_command\n    command: \"C:\\Tools\\Procmon64.exe /BackingFile 'C:\\Tools\\bill.pml' /Minimized /AcceptEula\"",
+          "description": "Executes the command to start Procmon64 with a backing file."
+        },
+        {
+          "yaml": "fortrace.powershell:\n    action: execute_command\n    command: \"(New-Object -ComObject Shell.Application).Namespace(17).ParseName('D:').InvokeVerb('Eject')\"\n    artifact_type: NEEDLE",
+          "description": "Executes the command to eject a drive using PowerShell, logging the action as a traceable artifact."
+        }
+      ],
+      "properties": {
+        "action": {
+          "description": "The PowerShell action to be performed.",
+          "required": true,
+          "type": "string"
+        },
+        "command": {
+          "description": "The PowerShell command to be executed on the guest system. Required if `action` is 'execute_command'.",
+          "required": true,
+          "type": "string"
+        },
+        "artifact_type": {
+          "description": "Specifies the type of artifact to add to the report. Supported values are 'NEEDLE' or an empty string.",
+          "required": false,
+          "type": "string"
+        }
+      }
+    }
+  ]
+}

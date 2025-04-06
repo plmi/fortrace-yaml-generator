@@ -1,0 +1,110 @@
+{
+  "module": "fortrace.usermanagement",
+  "functions": [
+    {
+      "action": "create",
+      "description": "Create a new user.",
+      "examples": [
+        {
+          "yaml": "fortrace.usermanagement:\n    action: create\n    name: Bill\n    password: jyrL-Lvfah",
+          "description": "Creating a new user named Bill with a specified password."
+        },
+        {
+          "yaml": "fortrace.usermanagement:\n    action: create\n    name: Bill\n    password: jyrL-Lvfah\n    switch_to: true\n    artifact_type: NEEDLE",
+          "description": "Creating a new user named Bill and switching to that user immediately after creation."
+        }
+      ],
+      "properties": {
+        "action": {
+          "description": "The action to perform, must be 'create'.",
+          "required": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "The username to create. Defaults to 'fortrace'.",
+          "required": true,
+          "type": "string"
+        },
+        "password": {
+          "description": "The password for the new user. Required for the 'create' action.",
+          "required": true,
+          "type": "string"
+        },
+        "switch_to": {
+          "description": "If True, switches to the specified user after creation. Defaults to False.",
+          "required": false,
+          "type": "boolean"
+        },
+        "artifact_type": {
+          "description": "The type of artifact to add to the report. Supported values are 'NEEDLE' or an empty string.",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },
+    {
+      "action": "delete",
+      "description": "Delete an existing user.",
+      "examples": [
+        {
+          "yaml": "fortrace.usermanagement:\n    action: delete\n    name: fortrace\n    artifact_type: NEEDLE",
+          "description": "Deleting the user 'fortrace' and marking the action as a traceable artifact."
+        }
+      ],
+      "properties": {
+        "action": {
+          "description": "The action to perform, must be 'delete'.",
+          "required": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "The username to delete. Defaults to 'fortrace'.",
+          "required": true,
+          "type": "string"
+        },
+        "deletion_type": {
+          "description": "The type of deletion to perform. Defaults to 'delete'.",
+          "required": false,
+          "type": "string"
+        },
+        "artifact_type": {
+          "description": "The type of artifact to add to the report. Supported values are 'NEEDLE' or an empty string.",
+          "required": false,
+          "type": "string"
+        }
+      }
+    },
+    {
+      "action": "switch_to",
+      "description": "Switch to the specified user.",
+      "examples": [
+        {
+          "yaml": "fortrace.usermanagement:\n    action: switch_to\n    name: Bill\n    password: jyrL-Lvfah\n    artifact_type: NEEDLE",
+          "description": "Switching to the user 'Bill' with a specified password and marking the action as a traceable artifact."
+        }
+      ],
+      "properties": {
+        "action": {
+          "description": "The action to perform, must be 'switch_to'.",
+          "required": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "The username to switch to. Defaults to 'fortrace'.",
+          "required": true,
+          "type": "string"
+        },
+        "password": {
+          "description": "The password for the user to switch to.",
+          "required": false,
+          "type": "string"
+        },
+        "artifact_type": {
+          "description": "The type of artifact to add to the report. Supported values are 'NEEDLE' or an empty string.",
+          "required": false,
+          "type": "string"
+        }
+      }
+    }
+  ]
+}

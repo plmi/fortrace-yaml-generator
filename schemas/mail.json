@@ -1,0 +1,138 @@
+{
+  "module": "fortrace.mail",
+  "functions": [
+    {
+      "action": "open",
+      "description": "Opens Thunderbird with the provided password.",
+      "examples": [
+        {
+          "yaml": "fortrace.mail:\n    action: open\n    password: SuperSuperDuper123!",
+          "description": "Example of opening Thunderbird with a password."
+        }
+      ],
+      "properties": {
+        "password": {
+          "description": "The password for authentication.",
+          "required": true,
+          "type": "string"
+        },
+        "action": {
+          "description": "The mail action to perform.",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },
+    {
+      "action": "add_imap_account",
+      "description": "Adds an IMAP account to Thunderbird with the specified details.",
+      "examples": [
+        {
+          "yaml": "fortrace.mail:\n    action: add_imap_account\n    imap_server: imap.web.de\n    smtp_server: smtp.web.de\n    email_address: fortracetest@web.de\n    username: fortracetest@web.de\n    full_name: ForTrace\n    socket_type: 1\n    socket_type_smtp: 1\n    auth_method_smtp: 3",
+          "description": "Example of adding an IMAP account with all required fields."
+        }
+      ],
+      "properties": {
+        "imap_server": {
+          "description": "The IMAP server address for adding an IMAP account.",
+          "required": true,
+          "type": "string"
+        },
+        "smtp_server": {
+          "description": "The SMTP server address for adding an IMAP account.",
+          "required": true,
+          "type": "string"
+        },
+        "email_address": {
+          "description": "The email address for the IMAP account.",
+          "required": true,
+          "type": "string"
+        },
+        "username": {
+          "description": "The username for the IMAP account.",
+          "required": true,
+          "type": "string"
+        },
+        "full_name": {
+          "description": "The full name associated with the email account.",
+          "required": true,
+          "type": "string"
+        },
+        "socket_type": {
+          "description": "The socket type for the IMAP connection.",
+          "required": true,
+          "type": "string"
+        },
+        "socket_type_smtp": {
+          "description": "The socket type for the SMTP connection.",
+          "required": true,
+          "type": "string"
+        },
+        "auth_method_smtp": {
+          "description": "The authentication method for the SMTP server.",
+          "required": true,
+          "type": "string"
+        },
+        "action": {
+          "description": "The mail action to perform.",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },
+    {
+      "action": "send_mail",
+      "description": "Sends an email using Thunderbird with the specified details.",
+      "examples": [
+        {
+          "yaml": "fortrace.mail:\n    action: send_mail\n    receiver: john@doe.com\n    subject: \"This is a subject\"\n    message: \"Hi, how are you?\"",
+          "description": "Example of sending an email with a receiver, subject, and message."
+        }
+      ],
+      "properties": {
+        "receiver": {
+          "description": "The recipient's email address.",
+          "required": true,
+          "type": "string"
+        },
+        "subject": {
+          "description": "The subject of the email.",
+          "required": true,
+          "type": "string"
+        },
+        "message": {
+          "description": "The body of the email.",
+          "required": true,
+          "type": "string"
+        },
+        "attachment_path_list": {
+          "description": "A list of file paths to attach to the email.",
+          "required": false,
+          "type": "string"
+        },
+        "action": {
+          "description": "The mail action to perform.",
+          "required": true,
+          "type": "string"
+        }
+      }
+    },
+    {
+      "action": "close",
+      "description": "Closes Thunderbird.",
+      "examples": [
+        {
+          "yaml": "fortrace.mail:\n    action: close",
+          "description": "Example of closing Thunderbird."
+        }
+      ],
+      "properties": {
+        "action": {
+          "description": "The mail action to perform.",
+          "required": true,
+          "type": "string"
+        }
+      }
+    }
+  ]
+}
