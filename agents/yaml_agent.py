@@ -29,7 +29,7 @@ class YamlAgent(AgentBase):
     def __extract_response(self, response: str, marker: str):
         response = response.split(f'<{marker}>')[1].split(f'</{marker}>')[0]
         return response
-    
+
     def __create_index(self, directory: str):
         documents = []
         for filename in os.listdir(directory):
@@ -66,7 +66,7 @@ class YamlAgent(AgentBase):
 
         # Save the vector store (optional)
         vector_store.save_local("vector_store")
-    
+
     def __create_vector_storage(self):
         # Generate embeddings
         embeddings: OpenAIEmbeddings = OpenAIEmbeddings(
@@ -78,12 +78,11 @@ class YamlAgent(AgentBase):
 
         # Load the vector store with dangerous deserialization allowed
         return FAISS.load_local(
-            # "/home/michael/bachelorarbeit-ws24/tools/fortrace-chatbot-langchain/vector_store", 
             "/app/vector_store",
-            embeddings, 
+            embeddings,
             allow_dangerous_deserialization=True
         )
-    
+
     def __create_qa_chain(self, vector_store):
         # Create the RetrievalQA chain with the custom prompt
         retriever = vector_store.as_retriever(search_kwargs={"k": 100})
@@ -93,7 +92,7 @@ class YamlAgent(AgentBase):
             retriever=retriever,
             chain_type_kwargs={"prompt": self.__prompt}
         )
-    
+
     def __extract_response(self, response: str, marker: str):
         response = response.split(f'<{marker}>')[1].split(f'</{marker}>')[0]
         return response
@@ -110,7 +109,6 @@ class YamlAgent(AgentBase):
         """
         logging.info("---YAML START---")
         # setup vector store
-        # self.__create_index("/home/michael/bachelorarbeit-ws24/notebooks/schemas")
         vector_store = self.__create_vector_storage()
 
         # prepare prompt
